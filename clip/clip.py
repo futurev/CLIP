@@ -78,8 +78,8 @@ def _download(url: str, root: str):
 
 def _transform(n_px):
     return Compose([
-        Resize(n_px, interpolation=BICUBIC),
-        CenterCrop(n_px),
+        # Resize(n_px, interpolation=BICUBIC),
+        # CenterCrop(n_px),
         # _convert_image_to_rgb,
         ToTensor(),
         Normalize((0.48145466, 0.4578275, 0.40821073), (0.26862954, 0.26130258, 0.27577711)),
@@ -139,7 +139,7 @@ def load(name: str, device: Union[str, torch.device] = "cuda" if torch.cuda.is_a
         model = build_model(state_dict or model.state_dict()).to(device)
         if str(device) == "cpu":
             model.float()
-        return model, model.visual.input_resolution
+        return model, _transform(model.visual.input_resolution)
 
     # patch the device names
     device_holder = torch.jit.trace(lambda: torch.ones([]).to(torch.device(device)), example_inputs=[])
