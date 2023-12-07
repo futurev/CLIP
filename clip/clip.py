@@ -78,7 +78,7 @@ def _download(url: str, root: str):
 
 def _transform(n_px):
     return Compose([
-        # Resize(n_px, interpolation=BICUBIC),
+        Resize(n_px, interpolation=BICUBIC),
         # CenterCrop(n_px),
         # _convert_image_to_rgb,
         ToTensor(),
