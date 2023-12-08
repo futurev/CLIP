@@ -72,8 +72,8 @@ def _download(url: str, root: str):
     return download_target
 
 
-# def _convert_image_to_rgb(image):
-#     return image.convert("RGB")
+def _convert_image_to_rgb(image):
+    return image.convert("RGB")
 
 
 def _transform(n_px):
